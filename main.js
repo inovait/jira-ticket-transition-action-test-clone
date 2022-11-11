@@ -63,6 +63,7 @@ async function transitionTickets(tickets, sourceTransition, targetTransition, me
 
 async function extractCommits(after, before) {
   let options = {
+    from: after,
     to: before
   }
   if (options.from === "0000000000000000000000000000000000000000") {
