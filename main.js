@@ -1,3 +1,5 @@
+const simpleGit = require('simple-git')
+
 function getTickets(input) {
     const ticketRegex = /([a-zA-Z][a-zA-Z0-9_]+-[1-9][0-9]*)/g
     let source = ""
@@ -59,7 +61,24 @@ async function transitionTickets(tickets, sourceTransition, targetTransition, me
     return transitioned
 }
 
+async function extractCommits(after, before) {
+  let options = {
+    from: after,
+    to: before
+  }
+  if (options.from === "0000000000000000000000000000000000000000") {
+    delete options.from
+  }
+  if (options.to === "0000000000000000000000000000000000000000") {
+    delete options.to
+  }
+
+  let res = await simpleGit().log(options)
+  return res.all
+}
+
 module.exports = {
     getTickets,
-    transitionTickets
+    transitionTickets,
+    extractCommits
 }
