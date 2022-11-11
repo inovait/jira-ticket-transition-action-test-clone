@@ -74,7 +74,7 @@ async function extractCommits(after, before) {
   }
   console.log(JSON.stringify(options))
 
-  let res = await simpleGit().log()
+  let res = await simpleGit().log(options)
   console.log(JSON.stringify(res, null, 2))
   return res.all
 }
