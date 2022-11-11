@@ -63,8 +63,8 @@ async function transitionTickets(tickets, sourceTransition, targetTransition, me
 
 async function extractCommits(after, before) {
   let options = {
-    to: after,
-    from: before
+    from: before,
+    to: after
   }
   if (options.from === "0000000000000000000000000000000000000000") {
     delete options.from
@@ -74,7 +74,7 @@ async function extractCommits(after, before) {
   }
   console.log(JSON.stringify(options))
 
-  let res = await simpleGit().log(options)
+  let res = await simpleGit().log()
   console.log(JSON.stringify(res, null, 2))
   return res.all
 }
