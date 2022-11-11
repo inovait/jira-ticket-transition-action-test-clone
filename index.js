@@ -14,7 +14,7 @@ async function run() {
   let after = github.context.payload.after
   let commitTickets = await action.extractCommits(after, before)
   let ticketList = [...commitTickets, pullRequestRef, github.context.payload.ref]
-  console.log(JSON.stringify(ticketList))
+  console.log(JSON.stringify(action.getTickets(ticketList)))
 }
 
 run()
